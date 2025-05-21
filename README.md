@@ -1,6 +1,6 @@
-# games-rename
+# honor-of-kings-tools
 
-An Electron application with Vue
+This is a tool for Honor of Kings
 
 ## Recommended IDE Setup
 

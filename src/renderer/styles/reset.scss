@@ -3,16 +3,37 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #f5f7fa;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: HarmonyOS Sans SC, Microsoft YaHei,Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Arial, sans-serif;
-  background-color: #f5f7fa;
+  font-family:
+    HarmonyOS Sans SC,
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Open Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 
 * {
   box-sizing: border-box;
+
+  /* 适用于所有现代浏览器 */
+  overflow: auto;
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+
+  /* Chrome/Safari/Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 #app {

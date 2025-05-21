@@ -1,6 +1,6 @@
-appId: com.electron.app
+appId: com.github.fushe1024.honor-of-kings-tools
 
-productName: 王者荣耀重命名工具
+productName: 王者荣耀工具
 
 directories:
   buildResources: build
@@ -16,7 +16,7 @@ asarUnpack:
   - resources/**
 
 win:
-  executableName: games-rename
+  executableName: honor-of-kings-tools
 
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
