@@ -1,59 +1,47 @@
 <script setup>
 import { ref } from 'vue'
+import { generateDuplicateNames } from './index'
 
 // 输入框内容
 const input = ref('')
+// 重复名数组
+const repeatNames = ref([])
+// loading
+const loading = ref(false)
 
 // 点击生成重复名
+let timeID = null
 const generateName = () => {
-  console.log('生成重复名')
+  loading.value = true
+  repeatNames.value = []
+  clearTimeout(timeID)
+  timeID = setTimeout(() => {
+    repeatNames.value = generateDuplicateNames(input.value)
+    loading.value = false
+  }, 300)
 }
 
 // 点击重新生成
 const generateNewName = () => {
-  console.log('重新生成')
+  if (input.value === '') {
+    /* eslint-disable no-undef */
+    ElMessage.error('请先输入游戏名字')
+    return
+  }
+  repeatNames.value = []
+  generateName()
 }
 
-// 重复名数组
-const repeatNames = ref([
-  {
-    id: 1,
-    name: '111'
-  },
-  {
-    id: 2,
-    name: '222'
-  },
-  {
-    id: 3,
-    name: '333'
-  },
-  {
-    id: 4,
-    name: '444'
-  },
-  {
-    id: 5,
-    name: '555'
-  },
-  {
-    id: 6,
-    name: '666'
-  },
-  {
-    id: 7,
-    name: '777'
-  },
-  {
-    id: 8,
-    name: '888'
-  }
-])
-
 // 复制
-const Copy = (row) => {
-  /* eslint-disable no-undef */
-  ElMessage.success(row.name + '复制成功')
+const Copy = async (row) => {
+  try {
+    // 使用 Clipboard API 写入剪贴板
+    await navigator.clipboard.writeText(row.name)
+    ElMessage.success('复制成功！')
+  } catch (err) {
+    console.error('复制失败:', err)
+    ElMessage.error('复制失败，请手动复制')
+  }
 }
 </script>
 
@@ -68,7 +56,9 @@ const Copy = (row) => {
         />
       </div>
       <div class="btns">
-        <el-button type="primary" @click="generateName"> 生成重复名 </el-button>
+        <el-button type="primary" :loading="loading" @click="generateName">
+          生成重复名
+        </el-button>
         <el-button type="success" @click="generateNewName">
           重新生成
         </el-button>

@@ -2,19 +2,17 @@
 
 <template>
   <div class="about">
-    <body>
-      <h1>Hello.</h1>
-      <h2>My name is Cookie.</h2>
-      <p>
-        Because the streamer likes playing "Honor of Kings", this small tool was
-        written.
-      </p>
-      <p>
-        Here is my
-        <a href="https://github.com/fushe1024" target="_blank">GitHub</a>
-        address
-      </p>
-    </body>
+    <h1>Hello.</h1>
+    <h2>My name is Cookie.</h2>
+    <p>
+      Because the streamer likes playing "Honor of Kings", this small tool was
+      written.
+    </p>
+    <p>
+      Here is my
+      <a href="https://github.com/fushe1024" target="_blank">GitHub</a>
+      address
+    </p>
   </div>
 </template>
 
