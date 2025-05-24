@@ -1,26 +1,44 @@
 <script setup>
 import { ref } from 'vue'
+import { generateBlankNames } from './index'
 
 // 输入框内容
 const input = ref('')
+// 空白名数组
+const emptyNames = ref([])
+// loading
+const loading = ref(false)
 
 // 点击生成空白名
+let timeID = null
 const generateName = () => {
-  console.log('生成空白名')
+  loading.value = true
+  emptyNames.value = []
+  clearTimeout(timeID)
+  timeID = setTimeout(() => {
+    emptyNames.value = generateBlankNames()
+    loading.value = false
+  }, 300)
 }
 
 // 点击重新生成
 const generateNewName = () => {
-  console.log('重新生成')
+  emptyNames.value = []
+  generateName()
 }
 
-// 空白名数组
-const emptyNames = ref([])
-
 // 复制
-const Copy = (row) => {
-  /* eslint-disable no-undef */
-  ElMessage.success(row.name + '复制成功')
+const Copy = async (row) => {
+  try {
+    // 使用 Clipboard API 写入剪贴板
+    await navigator.clipboard.writeText(row.name)
+    // eslint-disable-next-line
+    ElMessage.success('复制成功！')
+  } catch (err) {
+    console.error('复制失败:', err)
+    // eslint-disable-next-line
+    ElMessage.error('复制失败，请手动复制')
+  }
 }
 </script>
 
@@ -31,7 +49,7 @@ const Copy = (row) => {
         <el-input
           v-model="input"
           disabled
-          placeholder="请输入想要使用的游戏名字"
+          placeholder="直接点击右侧生成按钮即可"
           clearable
         />
       </div>

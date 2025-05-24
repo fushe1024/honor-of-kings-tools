@@ -24,7 +24,7 @@ const generateName = () => {
 // 点击重新生成
 const generateNewName = () => {
   if (input.value === '') {
-    /* eslint-disable no-undef */
+    // eslint-disable-next-line
     ElMessage.error('请先输入游戏名字')
     return
   }
@@ -37,9 +37,11 @@ const Copy = async (row) => {
   try {
     // 使用 Clipboard API 写入剪贴板
     await navigator.clipboard.writeText(row.name)
+    // eslint-disable-next-line
     ElMessage.success('复制成功！')
   } catch (err) {
     console.error('复制失败:', err)
+    // eslint-disable-next-line
     ElMessage.error('复制失败，请手动复制')
   }
 }

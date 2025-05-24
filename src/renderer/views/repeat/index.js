@@ -8,12 +8,10 @@ function calculateByteLength(str) {
   )
 }
 
-// 测试失败字符：'\u200C' '\u200D'
-
 // 生成重复名函数
 export const generateDuplicateNames = (gameName, nameNumber = 10) => {
   const MAX_BYTES = 12
-  const INVISIBLE_CHARS = ['\u200B', '\uFEFF']
+  const INVISIBLE_CHARS = ['\u200B', '\uFEFF', '\u2060', '\u2063']
   const result = new Set()
 
   // 计算原始名称字节
@@ -22,6 +20,8 @@ export const generateDuplicateNames = (gameName, nameNumber = 10) => {
 
   // 处理无法生成的情况
   if (availableBytes <= 0 || gameName === '') {
+    /* eslint-disable */
+    ElMessage.error('输入名字过长，尽量不超出5个字')
     return []
   }
 
